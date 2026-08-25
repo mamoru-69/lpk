@@ -367,6 +367,72 @@ body.admin-body {
     box-shadow: 0 0 0 .2rem rgba(200, 32, 47, .12);
 }
 
+.admin-settings-form {
+    padding: 0;
+    overflow: hidden;
+}
+
+.admin-settings-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .65rem;
+    padding: 1rem 1rem 0;
+    background: #fff;
+    border-bottom: 1px solid var(--admin-border);
+}
+
+.admin-settings-tab {
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--admin-muted);
+    padding: .75rem 1rem;
+    border-radius: 12px 12px 0 0;
+    font-weight: 800;
+    cursor: pointer;
+    transition: background .2s var(--admin-ease), color .2s var(--admin-ease), border-color .2s var(--admin-ease);
+}
+
+.admin-settings-tab:hover {
+    background: #f8fafc;
+    color: var(--admin-ink);
+}
+
+.admin-settings-tab.active {
+    background: #fff5f6;
+    color: var(--admin-red);
+    border-color: #f5cbd0;
+    border-bottom-color: #fff5f6;
+}
+
+.admin-settings-panel {
+    display: none;
+    padding: 1.5rem;
+}
+
+.admin-settings-panel.active {
+    display: block;
+}
+
+.admin-settings-section-head {
+    margin-bottom: 1.25rem;
+}
+
+.admin-settings-section-head h4 {
+    margin: 0;
+    font-weight: 800;
+}
+
+.admin-settings-section-head p {
+    margin: .35rem 0 0;
+    color: var(--admin-muted);
+}
+
+.admin-settings-actions {
+    padding: 1rem 1.5rem 1.5rem;
+    border-top: 1px solid var(--admin-border);
+    background: #fafbfd;
+}
+
 .admin-alert {
     border-radius: 14px;
     padding: .9rem 1rem;
@@ -540,4 +606,6 @@ body.admin-body {
     }
     .login-page { grid-template-columns: 1fr; }
     .login-visual { min-height: 280px; }
+    .admin-settings-tabs { padding-inline: .75rem; }
+    .admin-settings-tab { flex: 1 1 calc(50% - .65rem); }
 }
