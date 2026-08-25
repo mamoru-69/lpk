@@ -17,6 +17,7 @@
 @php
     $siteName = $settings['site_name'] ?? 'Lpk Ayumu Kaigo';
     $waUrl = \App\Models\Setting::whatsappUrl($settings['whatsapp'] ?? null);
+    $currentLocale = app()->getLocale();
 @endphp
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
     <div class="container">
@@ -24,14 +25,28 @@
         <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav"><span class="navbar-toggler-icon"></span></button>
         <div id="nav" class="collapse navbar-collapse">
             <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
-                <li><a class="nav-link" href="{{ route('profile') }}">Profil</a></li>
-                <li><a class="nav-link" href="{{ route('programs') }}">Program</a></li>
-                <li><a class="nav-link" href="{{ route('legal') }}">Legalitas</a></li>
-                <li><a class="nav-link" href="{{ route('gallery') }}">Galeri</a></li>
-                <li><a class="nav-link" href="{{ route('news') }}">Berita</a></li>
-                <li><a class="nav-link" href="{{ route('faq') }}">FAQ</a></li>
-                <li><a class="nav-link" href="{{ route('contact') }}">Kontak</a></li>
-                <li><a class="btn btn-danger ms-lg-2" href="{{ route('registration.create') }}">Daftar Sekarang</a></li>
+                <li><a class="nav-link" href="{{ route('profile') }}">{{ __('app.nav.profile') }}</a></li>
+                <li><a class="nav-link" href="{{ route('programs') }}">{{ __('app.nav.programs') }}</a></li>
+                <li><a class="nav-link" href="{{ route('legal') }}">{{ __('app.nav.legal') }}</a></li>
+                <li><a class="nav-link" href="{{ route('gallery') }}">{{ __('app.nav.gallery') }}</a></li>
+                <li><a class="nav-link" href="{{ route('news') }}">{{ __('app.nav.news') }}</a></li>
+                <li><a class="nav-link" href="{{ route('faq') }}">{{ __('app.nav.faq') }}</a></li>
+                <li><a class="nav-link" href="{{ route('contact') }}">{{ __('app.nav.contact') }}</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ __('app.nav.language') }}: {{ strtoupper($currentLocale) }}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        @foreach(['id', 'en', 'ja'] as $locale)
+                            <li>
+                                <a class="dropdown-item @if($currentLocale === $locale) active @endif" href="{{ route('language.switch', $locale) }}">
+                                    {{ __("app.languages.$locale") }}
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </li>
+                <li><a class="btn btn-danger ms-lg-2" href="{{ route('registration.create') }}">{{ __('app.nav.register') }}</a></li>
             </ul>
         </div>
     </div>
@@ -48,25 +63,25 @@
                     <strong>{{ $siteName }}</strong>
                 </a>
                 <p class="site-footer-tagline">
-                    {{ $settings['tagline'] ?? 'Pelatihan bahasa Jepang dan persiapan program kerja Jepang.' }}
+                    {{ $settings['tagline'] ?? __('app.footer.default_tagline') }}
                 </p>
-                <a class="site-footer-cta" href="{{ route('registration.create') }}">Daftar Sekarang</a>
+                <a class="site-footer-cta" href="{{ route('registration.create') }}">{{ __('app.footer.register') }}</a>
             </div>
 
             <div class="site-footer-links">
-                <h6 class="site-footer-title">Menu</h6>
+                <h6 class="site-footer-title">{{ __('app.footer.menu') }}</h6>
                 <ul class="list-unstyled mb-0">
-                    <li><a href="{{ route('profile') }}">Profil</a></li>
-                    <li><a href="{{ route('programs') }}">Program</a></li>
-                    <li><a href="{{ route('legal') }}">Legalitas</a></li>
-                    <li><a href="{{ route('gallery') }}">Galeri</a></li>
-                    <li><a href="{{ route('news') }}">Berita</a></li>
-                    <li><a href="{{ route('contact') }}">Kontak</a></li>
+                    <li><a href="{{ route('profile') }}">{{ __('app.nav.profile') }}</a></li>
+                    <li><a href="{{ route('programs') }}">{{ __('app.nav.programs') }}</a></li>
+                    <li><a href="{{ route('legal') }}">{{ __('app.nav.legal') }}</a></li>
+                    <li><a href="{{ route('gallery') }}">{{ __('app.nav.gallery') }}</a></li>
+                    <li><a href="{{ route('news') }}">{{ __('app.nav.news') }}</a></li>
+                    <li><a href="{{ route('contact') }}">{{ __('app.nav.contact') }}</a></li>
                 </ul>
             </div>
 
             <div class="site-footer-contact-wrap">
-                <h6 class="site-footer-title">Hubungi Kami</h6>
+                <h6 class="site-footer-title">{{ __('app.footer.contact') }}</h6>
                 <ul class="site-footer-contact list-unstyled mb-0">
                     @if(!empty($settings['address']))
                         <li><span>AL</span> <p>{{ $settings['address'] }}</p></li>
@@ -87,7 +102,7 @@
 
             <div class="site-footer-location">
                 @if(!empty($settings['map_embed']))
-                    <h6 class="site-footer-title">Lokasi</h6>
+                    <h6 class="site-footer-title">{{ __('app.footer.location') }}</h6>
                     <div class="site-footer-map">
                         <iframe src="{{ $settings['map_embed'] }}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
                     </div>
@@ -97,7 +112,7 @@
 
         <div class="site-footer-bottom">
             <small>&copy; {{ date('Y') }} {{ $siteName }}. All rights reserved.</small>
-            <small>LPK pelatihan bahasa Jepang dan persiapan karier.</small>
+            <small>{{ __('app.footer.career') }}</small>
         </div>
     </div>
 </footer>

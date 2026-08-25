@@ -12,6 +12,13 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\GalleryController as AdminGalleryController;
 use App\Http\Controllers\Admin\PostController as AdminPostController;
 
+Route::get('/language/{locale}', function (string $locale) {
+    abort_unless(in_array($locale, ['id', 'en', 'ja'], true), 404);
+    session(['locale' => $locale]);
+
+    return back();
+})->name('language.switch');
+
 Route::get('/', [PublicController::class, 'home'])->name('home');
 Route::get('/profil', [PublicController::class, 'profile'])->name('profile');
 Route::get('/program', [PublicController::class, 'programs'])->name('programs');
