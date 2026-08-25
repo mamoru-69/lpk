@@ -16,7 +16,15 @@ Route::get('/language/{locale}', function (string $locale) {
     abort_unless(in_array($locale, ['id', 'en', 'ja'], true), 404);
     session(['locale' => $locale]);
 
-    return back();
+    $response = back();
+
+    if ($locale === 'id') {
+        return $response->withoutCookie('googtrans', '/');
+    }
+
+    return $response->withCookie(
+        cookie('googtrans', "/id/{$locale}", 60 * 24 * 365, '/', null, false, false, true, 'Lax')
+    );
 })->name('language.switch');
 
 Route::get('/', [PublicController::class, 'home'])->name('home');

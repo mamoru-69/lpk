@@ -11,13 +11,18 @@
         .swal-theme-title { font-weight: 800; }
         .swal2-styled.swal2-confirm { border-radius: 10px; font-weight: 700; }
         .swal2-styled.swal2-cancel { border-radius: 10px; font-weight: 700; }
+        #google_translate_element,
+        .goog-te-banner-frame,
+        .goog-te-gadget,
+        .skiptranslate { display: none !important; }
+        body { top: 0 !important; }
     </style>
 </head>
 <body>
 @php
     $siteName = $settings['site_name'] ?? 'Lpk Ayumu Kaigo';
     $waUrl = \App\Models\Setting::whatsappUrl($settings['whatsapp'] ?? null);
-    $currentLocale = app()->getLocale();
+    $currentLocale = session('locale', 'id');
     $setting = fn ($key, $default = null) => \App\Models\Setting::localized($settings, $key, $default);
 @endphp
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
@@ -120,6 +125,17 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<div id="google_translate_element"></div>
+<script>
+    window.googleTranslateElementInit = function () {
+        new google.translate.TranslateElement({
+            pageLanguage: 'id',
+            includedLanguages: 'id,en,ja',
+            autoDisplay: false
+        }, 'google_translate_element');
+    };
+</script>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 @include('components.sweetalert')
 @yield('scripts')
 </body>
