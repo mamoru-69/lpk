@@ -367,31 +367,42 @@ body.admin-body {
     box-shadow: 0 0 0 .2rem rgba(200, 32, 47, .12);
 }
 
+.admin-rich-field {
+    margin-bottom: 1.25rem;
+}
+
 .admin-rich-source {
-    display: none;
+    display: none !important;
 }
 
-.admin-rich-editor {
-    margin-bottom: 1rem;
-}
-
-.admin-rich-editor .ql-toolbar {
+.admin-rich-field .ql-toolbar.ql-snow {
     border-color: #dbe3ee;
     border-radius: 12px 12px 0 0;
     background: #fafbfd;
+    min-height: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .25rem;
+    padding: .6rem .75rem;
 }
 
-.admin-rich-editor .ql-container {
+.admin-rich-field .ql-container.ql-snow {
     border-color: #dbe3ee;
     border-radius: 0 0 12px 12px;
     font-family: inherit;
-    min-height: 220px;
+    height: 220px;
 }
 
-.admin-rich-editor .ql-editor {
-    min-height: 220px;
+.admin-rich-field .ql-editor {
+    min-height: 218px;
     font-size: 1rem;
     line-height: 1.7;
+    overflow-y: auto;
+}
+
+.admin-rich-field .ql-formats {
+    margin-right: .55rem;
 }
 
 .admin-settings-form {

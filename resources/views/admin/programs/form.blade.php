@@ -30,13 +30,17 @@
         </div>
         <div class="col-12">
             <label>Deskripsi</label>
-            <textarea class="form-control admin-rich-source" rows="6" name="description" id="description-input">{{ old('description', $program->description) }}</textarea>
-            <div class="admin-rich-editor" data-rich-editor="description-input"></div>
+            <div class="admin-rich-field">
+                <textarea class="form-control admin-rich-source" rows="6" name="description" id="description-input">{{ old('description', $program->description) }}</textarea>
+                <div class="admin-rich-editor" data-rich-editor="description-input"></div>
+            </div>
         </div>
         <div class="col-12">
             <label>Persyaratan</label>
-            <textarea class="form-control admin-rich-source" rows="4" name="requirements" id="requirements-input">{{ old('requirements', $program->requirements) }}</textarea>
-            <div class="admin-rich-editor" data-rich-editor="requirements-input"></div>
+            <div class="admin-rich-field">
+                <textarea class="form-control admin-rich-source" rows="4" name="requirements" id="requirements-input">{{ old('requirements', $program->requirements) }}</textarea>
+                <div class="admin-rich-editor" data-rich-editor="requirements-input"></div>
+            </div>
         </div>
         <div class="col-md-4">
             <label>Durasi</label>
