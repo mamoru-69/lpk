@@ -120,9 +120,6 @@
         <label>Subjudul Legalitas</label>
         <textarea class="form-control" rows="2" name="legal_subtitle" placeholder="Tampilkan dokumen izin dan identitas lembaga yang benar-benar dimiliki.">{{ $settings['legal_subtitle'] ?? '' }}</textarea>
 
-        <label>Catatan Legalitas</label>
-        <textarea class="form-control" rows="3" name="legal_notice" placeholder="Jangan menampilkan nomor izin, status SO, mitra Jepang, akreditasi, atau klaim penempatan yang belum dapat diverifikasi.">{{ $settings['legal_notice'] ?? '' }}</textarea>
-
         <div class="row g-3">
             <div class="col-md-4">
                 <label>Judul Kartu 1</label>

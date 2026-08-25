@@ -3,7 +3,6 @@
 @php
     $legalTitle = $settings['legal_title'] ?? 'Legalitas & Transparansi';
     $legalSubtitle = $settings['legal_subtitle'] ?? 'Tampilkan dokumen izin dan identitas lembaga yang benar-benar dimiliki.';
-    $legalNotice = $settings['legal_notice'] ?? 'Jangan menampilkan nomor izin, status SO, mitra Jepang, akreditasi, atau klaim penempatan yang belum dapat diverifikasi.';
     $legalCards = [
         [
             'title' => $settings['legal_nib_title'] ?? 'NIB / Identitas Usaha',
@@ -32,10 +31,6 @@
 </section>
 
 <div class="container py-5">
-    @if(!empty($legalNotice))
-        <div class="alert alert-warning">{!! nl2br(e($legalNotice)) !!}</div>
-    @endif
-
     <div class="row g-4">
         @foreach($legalCards as $card)
             <div class="col-md-4">

@@ -12,7 +12,7 @@ class SettingController extends Controller {
    'site_name','tagline','phone','whatsapp','email','address','map_embed','hero_title','hero_subtitle',
    'profile_title','profile_subtitle','profile_about_title','profile_about_body','profile_vision',
    'profile_mission','profile_identity_name','profile_identity_status','profile_identity_focus','profile_identity_area',
-   'legal_title','legal_subtitle','legal_notice','legal_nib_title','legal_nib_body','legal_license_title',
+   'legal_title','legal_subtitle','legal_nib_title','legal_nib_body','legal_license_title',
    'legal_license_body','legal_partner_title','legal_partner_body',
   ];
   foreach($textKeys as $key){
