@@ -19,9 +19,9 @@
     <div class="row g-5">
         <div class="col-lg-8 reveal">
             <h3>Tentang Program</h3>
-            <div>{!! nl2br(e($program->description ?: 'Detail program dapat diisi melalui admin CMS.')) !!}</div>
+            <div class="program-rich-content">{!! $program->description ?: '<p>Detail program dapat diisi melalui admin CMS.</p>' !!}</div>
             <h3 class="mt-4">Persyaratan</h3>
-            <div>{!! nl2br(e($program->requirements ?: 'Persyaratan mengikuti kebijakan program dan hasil seleksi LPK.')) !!}</div>
+            <div class="program-rich-content">{!! $program->requirements ?: '<p>Persyaratan mengikuti kebijakan program dan hasil seleksi LPK.</p>' !!}</div>
         </div>
         <div class="col-lg-4">
             <div class="info-box reveal reveal-delay-2">

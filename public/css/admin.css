@@ -367,6 +367,33 @@ body.admin-body {
     box-shadow: 0 0 0 .2rem rgba(200, 32, 47, .12);
 }
 
+.admin-rich-source {
+    display: none;
+}
+
+.admin-rich-editor {
+    margin-bottom: 1rem;
+}
+
+.admin-rich-editor .ql-toolbar {
+    border-color: #dbe3ee;
+    border-radius: 12px 12px 0 0;
+    background: #fafbfd;
+}
+
+.admin-rich-editor .ql-container {
+    border-color: #dbe3ee;
+    border-radius: 0 0 12px 12px;
+    font-family: inherit;
+    min-height: 220px;
+}
+
+.admin-rich-editor .ql-editor {
+    min-height: 220px;
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
 .admin-settings-form {
     padding: 0;
     overflow: hidden;

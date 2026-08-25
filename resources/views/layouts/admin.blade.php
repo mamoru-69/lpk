@@ -6,6 +6,7 @@
     <title>@yield('title', 'Admin CMS')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+    @yield('styles')
     <style>
         .swal-theme-popup { border-radius: 20px; }
         .swal-theme-title { font-weight: 800; }
@@ -71,5 +72,6 @@
     </main>
 </div>
 @include('components.sweetalert')
+@yield('scripts')
 </body>
 </html>

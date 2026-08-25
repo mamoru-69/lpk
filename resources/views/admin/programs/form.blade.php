@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@section('styles')
+<link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet">
+@endsection
+
 @section('content')
 <div class="admin-page-head">
     <h2>{{ $program->exists ? 'Edit' : 'Tambah' }} Program</h2>
@@ -26,11 +30,13 @@
         </div>
         <div class="col-12">
             <label>Deskripsi</label>
-            <textarea class="form-control" rows="6" name="description">{{ old('description', $program->description) }}</textarea>
+            <textarea class="form-control admin-rich-source" rows="6" name="description" id="description-input">{{ old('description', $program->description) }}</textarea>
+            <div class="admin-rich-editor" data-rich-editor="description-input"></div>
         </div>
         <div class="col-12">
             <label>Persyaratan</label>
-            <textarea class="form-control" rows="4" name="requirements">{{ old('requirements', $program->requirements) }}</textarea>
+            <textarea class="form-control admin-rich-source" rows="4" name="requirements" id="requirements-input">{{ old('requirements', $program->requirements) }}</textarea>
+            <div class="admin-rich-editor" data-rich-editor="requirements-input"></div>
         </div>
         <div class="col-md-4">
             <label>Durasi</label>
@@ -50,4 +56,31 @@
 
     <button class="admin-btn mt-2">Simpan Program</button>
 </form>
+@endsection
+
+@section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+<script>
+document.querySelectorAll('[data-rich-editor]').forEach((editorElement) => {
+    const input = document.getElementById(editorElement.dataset.richEditor);
+    const quill = new Quill(editorElement, {
+        theme: 'snow',
+        modules: {
+            toolbar: [
+                ['bold', 'italic', 'underline'],
+                [{ list: 'ordered' }, { list: 'bullet' }, { list: 'check' }],
+                ['link'],
+                ['clean']
+            ]
+        }
+    });
+
+    quill.clipboard.dangerouslyPasteHTML(input.value || '');
+
+    input.form.addEventListener('submit', () => {
+        const html = quill.root.innerHTML.trim();
+        input.value = html === '<p><br></p>' ? '' : html;
+    });
+});
+</script>
 @endsection
