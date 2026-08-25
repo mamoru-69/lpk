@@ -75,6 +75,39 @@
         </div>
     </div>
 
+    <hr class="my-4">
+    <h4 class="mb-3">Setting Legalitas</h4>
+
+    <label>Judul Legalitas</label>
+    <input class="form-control" name="legal_title" value="{{ $settings['legal_title'] ?? '' }}" placeholder="Legalitas & Transparansi">
+
+    <label>Subjudul Legalitas</label>
+    <textarea class="form-control" rows="2" name="legal_subtitle" placeholder="Tampilkan dokumen izin dan identitas lembaga yang benar-benar dimiliki.">{{ $settings['legal_subtitle'] ?? '' }}</textarea>
+
+    <label>Catatan Legalitas</label>
+    <textarea class="form-control" rows="3" name="legal_notice" placeholder="Jangan menampilkan nomor izin, status SO, mitra Jepang, akreditasi, atau klaim penempatan yang belum dapat diverifikasi.">{{ $settings['legal_notice'] ?? '' }}</textarea>
+
+    <div class="row g-3">
+        <div class="col-md-4">
+            <label>Judul Kartu 1</label>
+            <input class="form-control" name="legal_nib_title" value="{{ $settings['legal_nib_title'] ?? '' }}" placeholder="NIB / Identitas Usaha">
+            <label>Isi Kartu 1</label>
+            <textarea class="form-control" rows="4" name="legal_nib_body" placeholder="Isi nomor dan dokumen resmi.">{{ $settings['legal_nib_body'] ?? '' }}</textarea>
+        </div>
+        <div class="col-md-4">
+            <label>Judul Kartu 2</label>
+            <input class="form-control" name="legal_license_title" value="{{ $settings['legal_license_title'] ?? '' }}" placeholder="Izin LPK">
+            <label>Isi Kartu 2</label>
+            <textarea class="form-control" rows="4" name="legal_license_body" placeholder="Isi nomor izin dan instansi penerbit.">{{ $settings['legal_license_body'] ?? '' }}</textarea>
+        </div>
+        <div class="col-md-4">
+            <label>Judul Kartu 3</label>
+            <input class="form-control" name="legal_partner_title" value="{{ $settings['legal_partner_title'] ?? '' }}" placeholder="Kerja Sama">
+            <label>Isi Kartu 3</label>
+            <textarea class="form-control" rows="4" name="legal_partner_body" placeholder="Daftar mitra hanya jika ada dokumen kerja sama yang sah.">{{ $settings['legal_partner_body'] ?? '' }}</textarea>
+        </div>
+    </div>
+
     <button class="admin-btn">Simpan Pengaturan</button>
 </form>
 @endsection
