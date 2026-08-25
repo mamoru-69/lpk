@@ -18,6 +18,7 @@
     $siteName = $settings['site_name'] ?? 'Lpk Ayumu Kaigo';
     $waUrl = \App\Models\Setting::whatsappUrl($settings['whatsapp'] ?? null);
     $currentLocale = app()->getLocale();
+    $setting = fn ($key, $default = null) => \App\Models\Setting::localized($settings, $key, $default);
 @endphp
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
     <div class="container">
@@ -63,7 +64,7 @@
                     <strong>{{ $siteName }}</strong>
                 </a>
                 <p class="site-footer-tagline">
-                    {{ $settings['tagline'] ?? __('app.footer.default_tagline') }}
+                    {{ $setting('tagline', __('app.footer.default_tagline')) }}
                 </p>
                 <a class="site-footer-cta" href="{{ route('registration.create') }}">{{ __('app.footer.register') }}</a>
             </div>

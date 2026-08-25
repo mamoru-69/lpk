@@ -1,20 +1,21 @@
 @extends('layouts.app')
 
 @php
-    $legalTitle = $settings['legal_title'] ?? 'Legalitas & Transparansi';
-    $legalSubtitle = $settings['legal_subtitle'] ?? 'Tampilkan dokumen izin dan identitas lembaga yang benar-benar dimiliki.';
+    $setting = fn ($key, $default = null) => \App\Models\Setting::localized($settings, $key, $default);
+    $legalTitle = $setting('legal_title', 'Legalitas & Transparansi');
+    $legalSubtitle = $setting('legal_subtitle', 'Tampilkan dokumen izin dan identitas lembaga yang benar-benar dimiliki.');
     $legalCards = [
         [
-            'title' => $settings['legal_nib_title'] ?? 'NIB / Identitas Usaha',
-            'body' => $settings['legal_nib_body'] ?? 'Isi nomor dan dokumen resmi.',
+            'title' => $setting('legal_nib_title', 'NIB / Identitas Usaha'),
+            'body' => $setting('legal_nib_body', 'Isi nomor dan dokumen resmi.'),
         ],
         [
-            'title' => $settings['legal_license_title'] ?? 'Izin LPK',
-            'body' => $settings['legal_license_body'] ?? 'Isi nomor izin dan instansi penerbit.',
+            'title' => $setting('legal_license_title', 'Izin LPK'),
+            'body' => $setting('legal_license_body', 'Isi nomor izin dan instansi penerbit.'),
         ],
         [
-            'title' => $settings['legal_partner_title'] ?? 'Kerja Sama',
-            'body' => $settings['legal_partner_body'] ?? 'Daftar mitra hanya jika ada dokumen kerja sama yang sah.',
+            'title' => $setting('legal_partner_title', 'Kerja Sama'),
+            'body' => $setting('legal_partner_body', 'Daftar mitra hanya jika ada dokumen kerja sama yang sah.'),
         ],
     ];
 @endphp

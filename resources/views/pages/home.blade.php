@@ -3,19 +3,22 @@
 @section('title', 'Lpk Ayumu Kaigo - Beranda')
 
 @section('content')
+@php
+    $setting = fn ($key, $default = null) => \App\Models\Setting::localized($settings, $key, $default);
+@endphp
 <section class="hero{{ !empty($settings['hero_background'] ?? null) ? ' has-bg' : '' }}"@if(!empty($settings['hero_background'] ?? null)) style="--hero-bg:url('{{ asset('storage/'.$settings['hero_background']) }}')"@endif>
     <div class="container py-5">
         <div class="row align-items-center min-vh-75 g-5">
             <div class="col-lg-7">
                 <span class="eyebrow hero-animate">日本への第一歩 • LANGKAH PERTAMA KE JEPANG</span>
                 <h1 class="display-3 fw-bold mt-3 hero-animate delay-1">
-                    @if(!empty($settings['hero_title']))
-                        {{ $settings['hero_title'] }}
+                    @if($setting('hero_title'))
+                        {{ $setting('hero_title') }}
                     @else
                         Bangun Kompetensi.<br><span>Siap Menuju Jepang.</span>
                     @endif
                 </h1>
-                <p class="lead mt-4 hero-animate delay-2">{{ $settings['hero_subtitle'] ?? 'Program bahasa Jepang, pembekalan budaya kerja, persiapan ujian, dan kesiapan seleksi kerja Jepang dalam satu jalur pembinaan.' }}</p>
+                <p class="lead mt-4 hero-animate delay-2">{{ $setting('hero_subtitle', 'Program bahasa Jepang, pembekalan budaya kerja, persiapan ujian, dan kesiapan seleksi kerja Jepang dalam satu jalur pembinaan.') }}</p>
                 <div class="d-flex gap-3 flex-wrap mt-4 hero-animate delay-3">
                     <a class="btn btn-danger btn-lg" href="{{ route('registration.create') }}">Mulai Pendaftaran</a>
                     <a class="btn btn-outline-light btn-lg" href="{{ route('programs') }}">Lihat Program</a>

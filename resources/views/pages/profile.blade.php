@@ -1,12 +1,13 @@
 @extends('layouts.app')
 
 @php
-    $profileTitle = $settings['profile_title'] ?? 'Profil LPK';
-    $profileSubtitle = $settings['profile_subtitle'] ?? 'Kenali lembaga, sejarah, visi, misi, nilai, tim, dan fasilitas pelatihan.';
-    $aboutTitle = $settings['profile_about_title'] ?? 'Tentang Lembaga';
-    $aboutBody = $settings['profile_about_body'] ?? 'Isi profil resmi LPK Anda di sini. Jelaskan fokus pelatihan bahasa Jepang, pembinaan karakter, budaya kerja, dan program penempatan yang memang sah dimiliki lembaga.';
-    $vision = $settings['profile_vision'] ?? 'Menjadi lembaga pelatihan kerja yang profesional dalam menyiapkan sumber daya manusia kompeten dan berkarakter untuk peluang kerja di Jepang.';
-    $missionText = $settings['profile_mission'] ?? "Menyelenggarakan pelatihan bahasa Jepang yang terukur.\nMembentuk disiplin, etika, dan budaya kerja.\nMemberikan informasi program secara transparan.\nMendampingi kesiapan peserta sesuai jalur program.";
+    $setting = fn ($key, $default = null) => \App\Models\Setting::localized($settings, $key, $default);
+    $profileTitle = $setting('profile_title', 'Profil LPK');
+    $profileSubtitle = $setting('profile_subtitle', 'Kenali lembaga, sejarah, visi, misi, nilai, tim, dan fasilitas pelatihan.');
+    $aboutTitle = $setting('profile_about_title', 'Tentang Lembaga');
+    $aboutBody = $setting('profile_about_body', 'Isi profil resmi LPK Anda di sini. Jelaskan fokus pelatihan bahasa Jepang, pembinaan karakter, budaya kerja, dan program penempatan yang memang sah dimiliki lembaga.');
+    $vision = $setting('profile_vision', 'Menjadi lembaga pelatihan kerja yang profesional dalam menyiapkan sumber daya manusia kompeten dan berkarakter untuk peluang kerja di Jepang.');
+    $missionText = $setting('profile_mission', "Menyelenggarakan pelatihan bahasa Jepang yang terukur.\nMembentuk disiplin, etika, dan budaya kerja.\nMemberikan informasi program secara transparan.\nMendampingi kesiapan peserta sesuai jalur program.");
     $missions = array_values(array_filter(array_map('trim', preg_split('/\r\n|\r|\n/', $missionText))));
 @endphp
 
@@ -41,10 +42,10 @@
         <div class="col-lg-5">
             <div class="info-box">
                 <h4>Identitas Lembaga</h4>
-                <p><b>Nama:</b> {{ $settings['profile_identity_name'] ?? $settings['site_name'] ?? 'LPK Sakura Indonesia' }}</p>
-                <p><b>Status:</b> {{ $settings['profile_identity_status'] ?? 'Lembaga Pelatihan Kerja' }}</p>
-                <p><b>Fokus:</b> {{ $settings['profile_identity_focus'] ?? 'Bahasa Jepang & Persiapan Kerja Jepang' }}</p>
-                <p class="mb-0"><b>Area layanan:</b> {{ $settings['profile_identity_area'] ?? 'Indonesia' }}</p>
+                <p><b>Nama:</b> {{ $setting('profile_identity_name', $settings['site_name'] ?? 'LPK Sakura Indonesia') }}</p>
+                <p><b>Status:</b> {{ $setting('profile_identity_status', 'Lembaga Pelatihan Kerja') }}</p>
+                <p><b>Fokus:</b> {{ $setting('profile_identity_focus', 'Bahasa Jepang & Persiapan Kerja Jepang') }}</p>
+                <p class="mb-0"><b>Area layanan:</b> {{ $setting('profile_identity_area', 'Indonesia') }}</p>
             </div>
         </div>
     </div>

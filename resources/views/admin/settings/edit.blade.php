@@ -23,13 +23,20 @@
         </div>
 
         <div class="row g-3">
-            @foreach(['site_name'=>'Nama LPK','tagline'=>'Tagline','phone'=>'Telepon','whatsapp'=>'WhatsApp (628xxx)','email'=>'Email'] as $key=>$label)
+            @foreach(['site_name'=>'Nama LPK','phone'=>'Telepon','whatsapp'=>'WhatsApp (628xxx)','email'=>'Email'] as $key=>$label)
                 <div class="col-md-6">
                     <label>{{ $label }}</label>
                     <input class="form-control" name="{{ $key }}" value="{{ $settings[$key] ?? '' }}">
                 </div>
             @endforeach
         </div>
+
+        @include('admin.settings.partials.localized-field', [
+            'settings' => $settings,
+            'name' => 'tagline',
+            'label' => 'Tagline',
+            'placeholder' => 'Belajar. Siap Kerja. Berangkat ke Jepang.',
+        ])
 
         <label>Alamat Lengkap</label>
         <textarea class="form-control" rows="3" name="address">{{ $settings['address'] ?? '' }}</textarea>
@@ -45,10 +52,21 @@
             <p>Konten pembuka halaman utama dan gambar latar hero.</p>
         </div>
 
-        @foreach(['hero_title'=>'Judul Hero','hero_subtitle'=>'Subjudul Hero'] as $key=>$label)
-            <label>{{ $label }}</label>
-            <input class="form-control" name="{{ $key }}" value="{{ $settings[$key] ?? '' }}">
-        @endforeach
+        @include('admin.settings.partials.localized-field', [
+            'settings' => $settings,
+            'name' => 'hero_title',
+            'label' => 'Judul Hero',
+            'placeholder' => 'Langkah Nyata Menuju Jepang',
+        ])
+
+        @include('admin.settings.partials.localized-field', [
+            'settings' => $settings,
+            'name' => 'hero_subtitle',
+            'label' => 'Subjudul Hero',
+            'type' => 'textarea',
+            'rows' => 2,
+            'placeholder' => 'Pelatihan bahasa Jepang, budaya kerja, dan persiapan program kerja Jepang secara terarah.',
+        ])
 
         <label>Background Hero</label>
         @if(!empty($settings['hero_background']))
@@ -69,41 +87,26 @@
             <p>Konten halaman profil lembaga, visi, misi, dan identitas lembaga.</p>
         </div>
 
-        <label>Judul Profil</label>
-        <input class="form-control" name="profile_title" value="{{ $settings['profile_title'] ?? '' }}" placeholder="Profil LPK">
-
-        <label>Subjudul Profil</label>
-        <textarea class="form-control" rows="2" name="profile_subtitle" placeholder="Kenali lembaga, visi, misi, dan fasilitas pelatihan.">{{ $settings['profile_subtitle'] ?? '' }}</textarea>
-
-        <label>Judul Tentang Lembaga</label>
-        <input class="form-control" name="profile_about_title" value="{{ $settings['profile_about_title'] ?? '' }}" placeholder="Tentang Lembaga">
-
-        <label>Isi Tentang Lembaga</label>
-        <textarea class="form-control" rows="5" name="profile_about_body" placeholder="Tulis profil resmi LPK di sini.">{{ $settings['profile_about_body'] ?? '' }}</textarea>
-
-        <label>Visi</label>
-        <textarea class="form-control" rows="3" name="profile_vision" placeholder="Tulis visi lembaga.">{{ $settings['profile_vision'] ?? '' }}</textarea>
-
-        <label>Misi</label>
-        <textarea class="form-control" rows="5" name="profile_mission" placeholder="Tulis satu misi per baris.">{{ $settings['profile_mission'] ?? '' }}</textarea>
+        @include('admin.settings.partials.localized-field', ['settings' => $settings, 'name' => 'profile_title', 'label' => 'Judul Profil', 'placeholder' => 'Profil LPK'])
+        @include('admin.settings.partials.localized-field', ['settings' => $settings, 'name' => 'profile_subtitle', 'label' => 'Subjudul Profil', 'type' => 'textarea', 'rows' => 2, 'placeholder' => 'Kenali lembaga, visi, misi, dan fasilitas pelatihan.'])
+        @include('admin.settings.partials.localized-field', ['settings' => $settings, 'name' => 'profile_about_title', 'label' => 'Judul Tentang Lembaga', 'placeholder' => 'Tentang Lembaga'])
+        @include('admin.settings.partials.localized-field', ['settings' => $settings, 'name' => 'profile_about_body', 'label' => 'Isi Tentang Lembaga', 'type' => 'textarea', 'rows' => 5, 'placeholder' => 'Tulis profil resmi LPK di sini.'])
+        @include('admin.settings.partials.localized-field', ['settings' => $settings, 'name' => 'profile_vision', 'label' => 'Visi', 'type' => 'textarea', 'rows' => 3, 'placeholder' => 'Tulis visi lembaga.'])
+        @include('admin.settings.partials.localized-field', ['settings' => $settings, 'name' => 'profile_mission', 'label' => 'Misi', 'type' => 'textarea', 'rows' => 5, 'placeholder' => 'Tulis satu misi per baris.'])
         <small class="text-muted d-block mb-3">Tulis satu poin misi per baris agar tampil sebagai daftar.</small>
 
         <div class="row g-3">
             <div class="col-md-6">
-                <label>Nama Lembaga di Profil</label>
-                <input class="form-control" name="profile_identity_name" value="{{ $settings['profile_identity_name'] ?? '' }}">
+                @include('admin.settings.partials.localized-field', ['settings' => $settings, 'name' => 'profile_identity_name', 'label' => 'Nama Lembaga di Profil'])
             </div>
             <div class="col-md-6">
-                <label>Status Lembaga</label>
-                <input class="form-control" name="profile_identity_status" value="{{ $settings['profile_identity_status'] ?? '' }}" placeholder="Lembaga Pelatihan Kerja">
+                @include('admin.settings.partials.localized-field', ['settings' => $settings, 'name' => 'profile_identity_status', 'label' => 'Status Lembaga', 'placeholder' => 'Lembaga Pelatihan Kerja'])
             </div>
             <div class="col-md-6">
-                <label>Fokus Lembaga</label>
-                <input class="form-control" name="profile_identity_focus" value="{{ $settings['profile_identity_focus'] ?? '' }}" placeholder="Bahasa Jepang & Persiapan Kerja Jepang">
+                @include('admin.settings.partials.localized-field', ['settings' => $settings, 'name' => 'profile_identity_focus', 'label' => 'Fokus Lembaga', 'placeholder' => 'Bahasa Jepang & Persiapan Kerja Jepang'])
             </div>
             <div class="col-md-6">
-                <label>Area Layanan</label>
-                <input class="form-control" name="profile_identity_area" value="{{ $settings['profile_identity_area'] ?? '' }}" placeholder="Indonesia">
+                @include('admin.settings.partials.localized-field', ['settings' => $settings, 'name' => 'profile_identity_area', 'label' => 'Area Layanan', 'placeholder' => 'Indonesia'])
             </div>
         </div>
     </section>
@@ -114,30 +117,21 @@
             <p>Konten halaman legalitas, catatan transparansi, dan kartu dokumen legal.</p>
         </div>
 
-        <label>Judul Legalitas</label>
-        <input class="form-control" name="legal_title" value="{{ $settings['legal_title'] ?? '' }}" placeholder="Legalitas & Transparansi">
-
-        <label>Subjudul Legalitas</label>
-        <textarea class="form-control" rows="2" name="legal_subtitle" placeholder="Tampilkan dokumen izin dan identitas lembaga yang benar-benar dimiliki.">{{ $settings['legal_subtitle'] ?? '' }}</textarea>
+        @include('admin.settings.partials.localized-field', ['settings' => $settings, 'name' => 'legal_title', 'label' => 'Judul Legalitas', 'placeholder' => 'Legalitas & Transparansi'])
+        @include('admin.settings.partials.localized-field', ['settings' => $settings, 'name' => 'legal_subtitle', 'label' => 'Subjudul Legalitas', 'type' => 'textarea', 'rows' => 2, 'placeholder' => 'Tampilkan dokumen izin dan identitas lembaga yang benar-benar dimiliki.'])
 
         <div class="row g-3">
             <div class="col-md-4">
-                <label>Judul Kartu 1</label>
-                <input class="form-control" name="legal_nib_title" value="{{ $settings['legal_nib_title'] ?? '' }}" placeholder="NIB / Identitas Usaha">
-                <label>Isi Kartu 1</label>
-                <textarea class="form-control" rows="4" name="legal_nib_body" placeholder="Isi nomor dan dokumen resmi.">{{ $settings['legal_nib_body'] ?? '' }}</textarea>
+                @include('admin.settings.partials.localized-field', ['settings' => $settings, 'name' => 'legal_nib_title', 'label' => 'Judul Kartu 1', 'placeholder' => 'NIB / Identitas Usaha'])
+                @include('admin.settings.partials.localized-field', ['settings' => $settings, 'name' => 'legal_nib_body', 'label' => 'Isi Kartu 1', 'type' => 'textarea', 'rows' => 4, 'placeholder' => 'Isi nomor dan dokumen resmi.'])
             </div>
             <div class="col-md-4">
-                <label>Judul Kartu 2</label>
-                <input class="form-control" name="legal_license_title" value="{{ $settings['legal_license_title'] ?? '' }}" placeholder="Izin LPK">
-                <label>Isi Kartu 2</label>
-                <textarea class="form-control" rows="4" name="legal_license_body" placeholder="Isi nomor izin dan instansi penerbit.">{{ $settings['legal_license_body'] ?? '' }}</textarea>
+                @include('admin.settings.partials.localized-field', ['settings' => $settings, 'name' => 'legal_license_title', 'label' => 'Judul Kartu 2', 'placeholder' => 'Izin LPK'])
+                @include('admin.settings.partials.localized-field', ['settings' => $settings, 'name' => 'legal_license_body', 'label' => 'Isi Kartu 2', 'type' => 'textarea', 'rows' => 4, 'placeholder' => 'Isi nomor izin dan instansi penerbit.'])
             </div>
             <div class="col-md-4">
-                <label>Judul Kartu 3</label>
-                <input class="form-control" name="legal_partner_title" value="{{ $settings['legal_partner_title'] ?? '' }}" placeholder="Kerja Sama">
-                <label>Isi Kartu 3</label>
-                <textarea class="form-control" rows="4" name="legal_partner_body" placeholder="Daftar mitra hanya jika ada dokumen kerja sama yang sah.">{{ $settings['legal_partner_body'] ?? '' }}</textarea>
+                @include('admin.settings.partials.localized-field', ['settings' => $settings, 'name' => 'legal_partner_title', 'label' => 'Judul Kartu 3', 'placeholder' => 'Kerja Sama'])
+                @include('admin.settings.partials.localized-field', ['settings' => $settings, 'name' => 'legal_partner_body', 'label' => 'Isi Kartu 3', 'type' => 'textarea', 'rows' => 4, 'placeholder' => 'Daftar mitra hanya jika ada dokumen kerja sama yang sah.'])
             </div>
         </div>
     </section>

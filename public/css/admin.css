@@ -427,6 +427,26 @@ body.admin-body {
     color: var(--admin-muted);
 }
 
+.admin-localized-field {
+    margin-bottom: .35rem;
+}
+
+.admin-localized-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: .85rem;
+}
+
+.admin-localized-grid small {
+    display: block;
+    color: var(--admin-muted);
+    font-weight: 800;
+    margin-bottom: .35rem;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    font-size: .68rem;
+}
+
 .admin-settings-actions {
     padding: 1rem 1.5rem 1.5rem;
     border-top: 1px solid var(--admin-border);
@@ -608,4 +628,5 @@ body.admin-body {
     .login-visual { min-height: 280px; }
     .admin-settings-tabs { padding-inline: .75rem; }
     .admin-settings-tab { flex: 1 1 calc(50% - .65rem); }
+    .admin-localized-grid { grid-template-columns: 1fr; }
 }

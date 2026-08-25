@@ -13,6 +13,17 @@ class Setting extends Model {
         return static::pluck('value','key')->toArray();
     }
 
+    public static function localized(array $settings, string $key, $default=null, ?string $locale=null){
+        $locale ??= app()->getLocale();
+        $localizedKey = $locale === 'id' ? $key : "{$key}_{$locale}";
+
+        if (!empty($settings[$localizedKey])) {
+            return $settings[$localizedKey];
+        }
+
+        return $settings[$key] ?? $default;
+    }
+
     public static function whatsappUrl(?string $number=null): ?string {
         $phone=preg_replace('/\D/','',(string) ($number ?? static::getValue('whatsapp','')));
         if(!$phone) return null;
